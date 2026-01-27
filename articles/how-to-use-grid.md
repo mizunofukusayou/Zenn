@@ -3,7 +3,7 @@ title: "Grid(CSS)について"
 emoji: "🧱"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Grid", "CSS"]
-published: false
+published: true
 ---
 # Gridとは
 cssのレイアウトを組むための手法の一つで、Flexboxが一次元的なレイアウトを組むときに使用するのに対して、Gridは二次元的なレイアウトを組むときに便利。
