@@ -5,7 +5,7 @@ type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [URL, CSS]
 published: true
 ---
-
+# URLをCSSを用いて省略して表示する方法
 - `overflow-wrap: break-word;`で幅に幅に合わせて(単語を切らずに)改行してくれる。
 (`word-break: break-all;`だと単語の途中で改行される)
 
@@ -23,4 +23,9 @@ published: true
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+```
+
+# Tailwindの場合
+```ts
+<div className="wrap-break-word line-clamp-2"></div>
 ```
