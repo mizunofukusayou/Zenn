@@ -6,8 +6,10 @@ topics: ["Project", "Typescript", "React", "CSS"]
 published: true
 ---
 
-Lot-LinkというWebアプリ開発プロジェクトを通じて学んだ、細かいけれど重要な技術的な知見をまとめました。
-長くなりそうなトピック（CSS GridやURL省略表示など）は別記事に切り出しているが、ここではそれ以外の細かなTipsや設計周りの気づきを備忘録として残す。
+# はじめに
+
+[Lot-Link](https://github.com/mizunofukusayou/Lot-Link)というWebアプリ開発プロジェクトを通じて学んだ、細かいけれど重要な技術的な知見をまとめる。
+長くなりそうなトピックは別記事に切り出しているが、ここではそれ以外の細かなTipsや設計周りの気づきを備忘録として残す。
 
 # TypeScript周りの知見
 
@@ -24,8 +26,6 @@ https://zenn.dev/mizunofukusayou/articles/type-of-typescript
 ---
 
 # CSS
-
-スタイリングに関しては、以下の記事に詳細をまとめている。
 
 https://zenn.dev/mizunofukusayou/articles/how-to-use-grid
 
