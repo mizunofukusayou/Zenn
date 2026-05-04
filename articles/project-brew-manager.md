@@ -42,6 +42,19 @@ if errors.As(err, &numErr) {
 }
 ```
 
+### Note
+main関数でのエラー出力に関して、
+User Error
+- `fmt.Fprintf(os.Stderr, "エラーメッセージ")`で、標準エラー出力にエラーメッセージを出力する。
+これを使用すると、標準エラー出力に、エラーメッセージだけを出力する。
+`log.Printf`を使用すると、標準エラー出力に、エラーメッセージと、日付と時間が出力される。
+`fmt.Printf`は、標準出力に出力するため、CLIだとパイプで繋げた時に困る。
+
+System Error
+- `log.Printf`は小規模なプロジェクト用
+- `log/slog`は大規模なプロジェクト用（ログのレベル分けや、ファイル出力などができる）
+- `log.Fatalf`は、エラーを出力した後に、プログラムを強制終了させる。(deferも実行されない)(`log.Printf + os.Exit(1)`と同等)
+
 
 ## Tips
 switch文のcaseは、breakが不要。
