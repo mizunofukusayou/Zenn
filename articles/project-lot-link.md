@@ -58,3 +58,22 @@ TypeScript $\times$ Next.jsのプロジェクトでは次の二つが人気の�
 | 学習コスト | 低い（SQLを知らなくても書ける） | 中程度（SQLの知識が必要） |
 | パフォーマンス | 普通（オーバーヘッドがある） | 非常に高い（軽量） |
 | 型安全性 | 非常に高い（コード生成による） | 非常に高い（型推論による） |
+
+### Prisma
+`npx prisma format`でスキーマファイルを自動整形できて便利。
+`npx prisma migrate dev --name [マイグレーション内容]`でマイグレーションファイルを自動生成できる。
+```ts
+import { Card } from "@/generated/prisma"; // 自動生成された型をインポート
+
+// type Card = {
+//   id: number;
+//   title: string;
+//   url: string;
+//   createdAt: Date;
+// };
+
+const newCard: Omit<Card, "id" | "createdAt"> = { // Omitでオブジェクトの中から特定のプロパティを除外できる
+  title: "Sample Card",
+  url: "https://example.com",
+};
+```
