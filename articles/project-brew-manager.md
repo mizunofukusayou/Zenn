@@ -2,7 +2,7 @@
 title: "brewManagerプロジェクトで学習したことのまとめ"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: [go, SQLite]
 published: false
 ---
 
@@ -16,3 +16,5 @@ goにはパッケージマネージャーが標準で備わっている。
 |設定ファイル|package.json|go.mod|
 |ロックファイル|package-lock.json|go.sum|
 
+## Tips
+switch文のcaseは、breakが不要。
