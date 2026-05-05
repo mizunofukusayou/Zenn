@@ -2,7 +2,7 @@
 title: "AtCoderの成長記録"
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: [AtCoder]
 published: false
 ---
 
