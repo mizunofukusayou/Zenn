@@ -66,6 +66,39 @@ System Error
 `mux.HandleFunc("/path", handler)`で、pathにアクセスがあったらhandler関数を呼び出すように設定する。
 `http.ListenAndServe(":8080", mux)`で、サーバーを起動する。
 
+## apiのレスポンス
+### レスポンスの書き方
+流れは、
+1. 属性（ヘッダー）の設定
+2. 結果（ステータスコード）の設定 (省略可能、省略すると200番)
+3. 中身（ボディ）の書き込み
+```go
+w.Header().Set("Content-Type", "application/json") // JSON形式でレスポンスを返すことを明示する
+w.WriteHeader(http.StatusOK) // HTTPステータスコードを200に設定する(省略すると200番)
+json.NewEncoder(w).Encode(response) // JSON形式に変換して、レスポンスのボディに書き込む
+```
+
+### エラー処理
+エラーも同様の流れで、ステータスコードを設定して、エラーメッセージをJSON形式で返す。
+この時、エラーメッセージは専用の構造体を定義して、JSON形式に変換して返すと、フロントエンドで扱いやすい。
+```go
+w.Header().Set("Content-Type", "application/json") // JSON形式でレスポンスを返すことを明示する
+w.WriteHeader(http.StatusInternalServerError) // HTTPステータスコードを500に設定する(省略すると200番)
+json.NewEncoder(w).Encode(ErrorResponse{"データベースの読み込みに失敗しました"}) // JSON形式に変換して、レスポンスのボディに書き込む
+```
+```go
+type ErrorResponse struct {
+    Message string `json:"message"`
+}
+```
+
+### `json.NewEncoder(w).Encode(response)`について
+二つに分割でき、
+```go
+encoder := json.NewEncoder(w) // レスポンスのボディに書き込むためのエンコーダーを作成する
+encoder.Encode(response) // レスポンスをJSON形式に変換して、レスポンスのボディに書き込む
+```
+
 ## Tips
 switch文のcaseは、breakが不要。
 `gofmt -w [ファイル名]`でGo公式ガイドラインに沿ってコードを自動整形できる。
