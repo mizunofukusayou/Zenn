@@ -61,6 +61,10 @@ System Error
 |1|General Error|データベース接続失敗、SQL実行エラー、ファイル読み込み失敗など。|
 |2|Usage Error|必須引数の不足、未知のコマンド、不正なオプション指定など。|
 
+## mux
+`mux := http.NewServeMux()`で、HTTPリクエストの転送先リストを作成する。
+`mux.HandleFunc("/path", handler)`で、pathにアクセスがあったらhandler関数を呼び出すように設定する。
+`http.ListenAndServe(":8080", mux)`で、サーバーを起動する。
 
 ## Tips
 switch文のcaseは、breakが不要。
