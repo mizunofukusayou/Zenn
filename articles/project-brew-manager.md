@@ -65,6 +65,21 @@ System Error
 `mux := http.NewServeMux()`で、HTTPリクエストの転送先リストを作成する。
 `mux.HandleFunc("/path", handler)`で、pathにアクセスがあったらhandler関数を呼び出すように設定する。
 `http.ListenAndServe(":8080", mux)`で、サーバーを起動する。
+↑このままだと、スローロリス攻撃に弱いので、`http.Server`を使って、タイムアウトを設定する。
+```go
+server := &http.Server{
+    Addr:         ":8080",
+    Handler:      mux,
+    ReadTimeout:  5 * time.Second, // クライアントからのリクエストの読み込みにかかる最大時間
+    WriteTimeout: 10 * time.Second, // クライアントへのレスポンスの書き込みにかかる最大時間
+    IdleTimeout:  120 * time.Second, // クライアントとの接続がアイドル状態のときの最大時間
+}
+err := server.ListenAndServe()
+if err != nil {
+    log.Fatalf("サーバーの起動に失敗しました: %v", err)
+}
+```
+
 
 ## apiのレスポンス
 ### レスポンスの書き方
@@ -105,3 +120,14 @@ switch文のcaseは、breakが不要。
 
 # Vite
 proxy設定: `vite.config.ts`を編集することで、フロントのポートからバックエンドのポートにリクエストを転送できるようにする。（セキュリティの観点からブラウザがブロックしてしまうため）
+
+# Typescript
+## fetch
+apiを叩いてデータを取得するために、`fetch`関数を使用する。
+```typescript
+const response = await fetch("/api/path");
+if (!response.ok) {
+    // エラー処理
+}
+const data = await response.json();
+```
