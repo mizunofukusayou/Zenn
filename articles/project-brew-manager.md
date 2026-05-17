@@ -133,6 +133,37 @@ encoder := json.NewEncoder(w) // レスポンスのボディに書き込むた�
 encoder.Encode(response) // レスポンスをJSON形式に変換して、レスポンスのボディに書き込む
 ```
 
+## io/fs
+
+`io/fs`パッケージは、「ファイルシステムを抽象化する」ための標準パッケージ
+関数にファイルへのパスを渡すのではなく、`fs.FS`インターフェースを実装したオブジェクトを渡すことで、ファイルへのアクセスを簡単にできるようにする。
+
+設定ファイルを読み込む関数
+
+```go
+// 出どころがどこであれ、fs.FSさえ渡されればファイルを読める！
+func printConfig(fileSystem fs.FS) {
+    data, err := fs.ReadFile(fileSystem, "config.json")
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    fmt.Println(string(data))
+}
+
+//go:embed config.json
+var embeddedFiles embed.FS
+
+func main() {
+    // パターン1: 実際のOSのフォルダ（物理ファイル）から読み込む
+    osFS := os.DirFS("/path/to/local/dir")
+    printConfig(osFS)
+
+    // パターン2: バイナリに埋め込んだファイル（メモリ）から読み込む
+    printConfig(embeddedFiles)
+}
+```
+
 ## Tips
 
 switch文のcaseは、breakが不要。
