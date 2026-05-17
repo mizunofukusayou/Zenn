@@ -70,7 +70,9 @@ System Error
 | 1              | General Error | データベース接続失敗、SQL実行エラー、ファイル読み込み失敗など。 |
 | 2              | Usage Error   | 必須引数の不足、未知のコマンド、不正なオプション指定など。      |
 
-## mux
+## http
+
+### muxとhttp.Server
 
 `mux := http.NewServeMux()`で、HTTPリクエストの転送先リストを作成する。
 `mux.HandleFunc("/path", handler)`で、pathにアクセスがあったらhandler関数を呼び出すように設定する。
@@ -90,6 +92,14 @@ if err != nil {
     log.Fatalf("サーバーの起動に失敗しました: %v", err)
 }
 ```
+
+### IPアドレス
+IPアドレスには3種類あり、
+- ループバック(localhost, 127.0.0.1): そのコンピュータ自身からのみアクセス可能
+- プライベートIP(例: 192.168.1.1): 同じネットワーク内の他のコンピュータからアクセス可能
+- パブリックIP: インターネット上のどこからでもアクセス可能
+`http.ListenAndServe(":8080", mux)`とすると、すべてのIPアドレスからアクセス可能になってしまうので、注意が必要。
+ローカル用の場合は、`http.ListenAndServe("127.0.0.1:8080", mux)`のように、特定のIPアドレスを指定する。
 
 ## apiのレスポンス
 
