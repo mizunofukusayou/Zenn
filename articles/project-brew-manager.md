@@ -164,6 +164,10 @@ func main() {
 }
 ```
 
+fs.Subを使用することで、ファイルシステムの一部を切り取って、別のfs.FSオブジェクトとして扱うことができる。
+`embed.FS`で読み込んだクライアントサーバーをそのまま`http.Handle("/", http.FileServer(http.FS(embeddedFiles)))`とすると、`/dist/index.html`(Reactの場合)としないと、`index.html`にアクセスできないため、`fs.Sub`で、`dist`以下を切り取って、別のfs.FSオブジェクトとして扱う。
+
+
 ## Tips
 
 switch文のcaseは、breakが不要。
