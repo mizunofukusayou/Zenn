@@ -76,6 +76,7 @@ System Error
 
 `mux := http.NewServeMux()`で、HTTPリクエストの転送先リストを作成する。
 `mux.HandleFunc("/path", handler)`で、pathにアクセスがあったらhandler関数を呼び出すように設定する。
+↑`mux.HandleFunc("GET /path", handler)`と書くとメソッドをGETに限定できる
 `http.ListenAndServe(":8080", mux)`で、サーバーを起動する。
 ↑このままだと、スローロリス攻撃に弱いので、`http.Server`を使って、タイムアウトを設定する。
 
