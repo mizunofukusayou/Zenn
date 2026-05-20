@@ -9,6 +9,9 @@ published: false
 # ABC
 ## 455
 - 多重ループを回すときに、`rep(i, n) rep(j, m)`のように書くと、インデントが浅くなって、コードが見やすくなる。
+- `reduce`を使うと配列の総和や累積を簡単に求めることができる。
+    - `reduce(all(v), 0LL)`で、long long型で配列vの総和を求めることができる。
+- `[](int acc, int i){return acc * i;}`でラムダ式を定義できる。
 
 ## 453
 - stringに対して、`substr(pos, len)`とすることで、posからlen文字分の部分文字列を取得できる。
