@@ -3,7 +3,7 @@ title: "AtCoderの成長記録"
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [AtCoder]
-published: false
+published: true
 ---
 
 # ABC
@@ -34,3 +34,18 @@ published: false
 ## 458
 - intの最大値は大体2*10^9
 - priority_queueで任意の場所から値を取得するのは難しいが、二つに分割することで取得できるようになる。(移動させる時には、`pq1.push(pq.top()), pq2.pop();`のように)
+
+## 434
+- `cout << fixed << setprecision(12) << a << '\n';`で桁数を設定して出力
+
+## 451
+- `multiset`型は要素自身がキーとなるsetで、重複あり。
+
+## 450
+- 関数に対して、ポインタ渡しではなく参照渡しにすると安全&簡潔
+- `int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};`を使うと隣接マスへの移動に便利
+- ラムダ式で`[&]`とすると環境の変数への参照をもてる
+- ラムダ式で自身へのポインタを持つと再帰関数を作れる`auto f = [](auto f) {f(f);};`
+
+## 463
+- 昇順の配列に対して`upper_bound`を使うと二分探索してくれる
